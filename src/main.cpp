@@ -6,16 +6,19 @@
 #define NUMBER_OF_SUMS 3000
 
 ////// WIFI settings //////
-const char* ssid = "HUAWEI_M2M";     // your network SSID (name of wifi network)
+const char* ssid = "";     // your network SSID (name of wifi network)
 const char* password = ""; // your network password
 
 ////// MQTT Settings //////
-// const char* mqtt_server = "10.151.236.151"; // dev
-const char* mqtt_server = "10.151.236.156";    // acc
-const int mqtt_port = 1883;
+//const char* mqtt_server = "10.151.236.151"; // dev
+//const char* mqtt_server = "10.151.236.156"; // acc
+const char* mqtt_server = "";                 // acc secure
+const int mqtt_port = 8883;
 
-const char* mqtt_user = "urn:dev:DVNUUID:60d74832-65d8-4804-8c76-b6d44d3b6474:";    // acc omgeving
+// const char* mqtt_user = "urn:dev:DVNUUID:60d74832-65d8-4804-8c76-b6d44d3b6474:"; // acc omgeving
 // const char* mqtt_user = "urn:dev:DVNUUID:13d0f3a6-9307-4da2-8704-e6e2cc8d8f6f:"; // dev omgeving
+// const char* mqtt_user = "urn:dev:DVNUUID:633220eb-0af3-4123-84f1-1d0f65783bd3:"; // hackathon omgeving
+const char* mqtt_user = "urn:dev:DVNUUID:97b1d52c-14cf-4aa4-8297-26aeb6dab69c:";    // mqtts acc omgeving
 const char* mqtt_password = "";
 const char* mqtt_topic = "outTopic";
 
@@ -26,8 +29,10 @@ int sendCount = 0;
 int countValue = 0;
 int measurements = 0;
 
-WiFiClient espClient;
-PubSubClient client(espClient);
+// WiFiClient espClient;
+// PubSubClient client(espClient);
+WiFiClientSecure secureClient;
+PubSubClient client(secureClient);
 
 void setup_wifi() {
   delay(10);
